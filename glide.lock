@@ -1,0 +1,11 @@
+hash: 0f6f43f9504b7de4a69101ad5c4e5b2a507e884609d85e931f3abb3943c7b1e5
+updated: 2020-02-07T16:59:42.053126097-03:00
+imports:
+- name: github.com/gorilla/mux
+  version: 75dcda0896e109a2a22c9315bca3bb21b87b2ba5
+- name: github.com/lib/pq
+  version: 9eb3fc897d6fd97dd4aad3d0404b54e2f7cc56be
+  subpackages:
+  - oid
+  - scram
+testImports: []
