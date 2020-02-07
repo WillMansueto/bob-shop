@@ -3,19 +3,24 @@ package main
 import(
 	"fmt"
 	"log"
+	"os"
 	"net/http"
 	"go-webapp/routes"
 	"go-webapp/utils"
 	"go-webapp/models"
 )
 
-const PORT = ":8080"
-
 func main(){
 	models.TestConnection()
-	fmt.Printf("listening Port %s\n", PORT)
+
+	port := os.Getenv("PORT")
+	if port =="" {
+		fmt.Println("Not Port")
+		os.Exit(1)
+	}
+	fmt.Printf("listening Port %s\n", port)
 	utils.LoadTemplates("views/*.html")
 	r := routes.NewRouter()
 	http.Handle("/", r)
-	log.Fatal(http.ListenAndServe(PORT, nil))
+	log.Fatal(http.ListenAndServe(fmt.Sprintf(":%s", port), nil))
 }
