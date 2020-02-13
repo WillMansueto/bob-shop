@@ -3,8 +3,8 @@ package routes
 import(
 	"fmt"
 	"net/http"
-	"go-webapp/utils"
-	"go-webapp/models"
+	"bob-shop/utils"
+	"bob-shop/models"
 )
 
 func homeGetHandler(w http.ResponseWriter, r*http.Request){

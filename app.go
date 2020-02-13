@@ -5,18 +5,17 @@ import(
 	"log"
 	"os"
 	"net/http"
-	"go-webapp/routes"
-	"go-webapp/utils"
-	"go-webapp/models"
+	"bob-shop/routes"
+	"bob-shop/utils"
+	"bob-shop/models"
 )
 
 func main(){
 	models.TestConnection()
 
 	port := os.Getenv("PORT")
-	if port =="" {
-		fmt.Println("Not Port")
-		os.Exit(1)
+	if port == "" {
+		port = "8080"
 	}
 	fmt.Printf("listening Port %s\n", port)
 	utils.LoadTemplates("views/*.html")

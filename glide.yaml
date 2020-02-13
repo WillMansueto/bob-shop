@@ -1,4 +1,4 @@
-package: go-webapp
+package: bob-shop
 import:
 - package: github.com/gorilla/mux
 - package: github.com/lib/pq

@@ -1,0 +1,8 @@
+- [] implement jquery navbar burger (*.html)
+- [] implement jquery flash messages close (register.html)
+
+
+truncate table x;
+--reseta toda a tabela
+
+alter sequence x restart with 1;

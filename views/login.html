@@ -4,7 +4,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<title>Home</title>
+	<title>Login</title>
 	<link rel="stylesheet" href="/assets/css/bulma.min.css">
 </head>
 <body>
@@ -23,7 +23,7 @@
 	  
 		<div id="navbarBasicExample" class="navbar-menu">
 		  <div class="navbar-start">
-			<a class="navbar-item">
+			<a class="navbar-item" href="/">
 			  Home
 			</a>
 	  
@@ -60,7 +60,7 @@
 				<a href="/register" class="button is-primary">
 				  <strong>Sign up</strong>
 				</a>
-				<a href="/login" class="button is-light">
+				<a class="button is-light">
 				  Log in
 				</a>
 			  </div>
@@ -69,66 +69,34 @@
 		</div>
 	</nav>
 	<div class="section">
+		{{ if (ne .Alert.Message "") }}
+		<div class='notification is-{{ .Alert.Type }}'> {{ .Alert.Message }} </div>
+		{{ end }}
+		<h1>LOGIN</h1>
 		<div class="columns is-centered">
 			<div class="column is-four-fifths">
-				<div class="columns">
-					<div class="column is-half">
-						<h2>Produtos: </h2>
-					</div>
-					<div class="column">
-						<form action="" method="POST">
-							<input class="input" type="text" name="search" id="search" placeholder="Pesquisar produtos"/>
-						</form>
-					</div>
-				</div>
-				<hr/>
-				<div id="data-table">
-					<table class="table is-bordered is-fullwidth">
-						<thead>
-							<th>Id</th>
-							<th>Categoria</th>
-							<th>Nome</th>
-							<th>Preço</th>
-							<th>Quantidade</th>
-							<th>Total</th>
-						</thead>
-						<tbody>
-							{{ range .Products }}
-							<tr>
-								<td>{{ .Id }}</td>
-								<td>{{ .Category.Description }}</td>
-								<td>{{ .Name }}</td>
-								<td>{{ .Price }}</td>
-								<td>{{ .Quantity }}</td>
-								<td>{{ .Amount }}</td>
-							</tr>
-							{{ end }}
-						</tbody>
-					</table>
+				<div class="column">
+					<form action="" method="POST">
+						<div class="field">
+							<label for="email">Email</label>
+							<div class="control">
+								<input class="input" type="text" name="email" id="email" placeholder="Email"/>
+							</div>
+						</div>
+						<div class="field">
+							<label for="password">Senha</label>
+							<input class="input" type="password" name="password" id="password" placeholder="Senha"/>
+						</div>
+						<div class="field">
+							<div class="control">
+								<button type="submit" class="button is-primary">Login</button>
+							</div>
+						</div>
+					</form>
 				</div>
 			</div>
 		</div>
+		<hr/>	
 	</div>
-	<script src="/assets/js/jquery-3.4.1.min.js"></script>
-	<script>
-		var ajaxSearch = (search) => {
-			$.ajax({
-				type: 'POST',
-				datatype: 'html',
-				url: '/',
-				beforeSend: () => {
-					$("#data-table").html("Buscando...");
-				},
-				data: { search: search },
-				success: (r) => {
-					$("#data-table").html(r);
-				}
-			});
-		};
-
-		$("#search").keyup(() => {
-			ajaxSearch($("#search").val());
-		})
-	</script>
 </body>
 </html>

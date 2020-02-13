@@ -17,3 +17,12 @@ CREATE TABLE IF NOT EXISTS products(
     CONSTRAINT products_category_fk FOREIGN KEY(category)
     REFERENCES category(id)
 );
+
+CREATE TABLE IF NOT EXISTS users(
+    id BIGSERIAL PRIMARY KEY,
+    firstname VARCHAR(35) NOT NULL,
+    lastname VARCHAR(20) NOT NULL,
+    email VARCHAR(40) NOT NULL UNIQUE,
+    password VARCHAR(100) NOT NULL,
+    status CHAR(1) DEFAULT '0'
+);
