@@ -33,11 +33,13 @@ func checkErrRegister(err error, w http.ResponseWriter, r *http.Request) {
 	message := "Cadastrado com sucesso!"
 	if err != nil {
 		switch(err) {
-		case models.ErrRequiredFirstName,
+		case models.ErrDuplicatedKeyEmail,
+			 models.ErrRequiredFirstName,
 			 models.ErrRequiredLastName,
 			 models.ErrRequiredEmail,
 			 models.ErrInvalidEmail,
-			 models.ErrRequiredPassword:
+			 models.ErrRequiredPassword,
+			 models.ErrMaxLimit:
 			 message = fmt.Sprintf("%s", err)
 			 break;
 		default:
