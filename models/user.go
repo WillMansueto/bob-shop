@@ -60,3 +60,24 @@ func GetUserByEmail(email string) (User, error) {
 	}
 	return user, nil
 }
+
+func GetUsers() ([]User, error) {
+	con := Connect()
+	defer con.Close()
+	sql := "SELECT * FROM users"
+	rs, err := con.Query(sql)
+	if err != nil {
+		return nil, err
+	}
+	defer rs.Close()
+	var users []User
+	for rs.Next() {
+		var user User
+		err := rs.Scan(&user.Id, &user.FirstName, &user.LastName, &user.Email, &user.Password, &user.Status)
+		if err != nil {
+			return nil, err
+		}
+		users = append(users, user)
+	}
+	return users, nil
+}

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Painel de Controle</title>
+	<link rel="stylesheet" href="/assets/css/bulma.min.css">
+	<link href="https://fonts.googleapis.com/css?family=Lobster+Two&display=swap" rel="stylesheet">
+	<style>.box-section {background-color: lightgrey;}</style>
+</head>
+<body>
+	<nav class="navbar" role="navigation" aria-label="main navigation">
+		<div class="navbar-brand">
+		  <a class="navbar-item" href="/">
+			<p style="font-family: 'Lobster Two', cursive; font-size: 30px;">Bob Shop</p>
+			<i class="fas fa-frog fa-2x has-text-primary" style="padding-left: 3px; font-size: 30px;" aria-hidden="true"></i>
+		  </a>
+	  
+		  <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+			<span aria-hidden="true"></span>
+			<span aria-hidden="true"></span>
+			<span aria-hidden="true"></span>
+		  </a>
+		</div>
+	  
+		<div id="navbarBasicExample" class="navbar-menu">
+		  <div class="navbar-start">
+			<a class="navbar-item is-active" href="/admin">
+			  Dashboard
+			</a>
+			<a class="navbar-item" href="#">
+			  Minha Conta
+			</a>
+			<a class="navbar-item" href="#">
+			  Segurança
+			</a>
+
+	  
+			<div class="navbar-item has-dropdown is-hoverable">
+			  <a class="navbar-link">
+				More
+			  </a>
+	  
+			  <div class="navbar-dropdown">
+				<a class="navbar-item">
+				  About
+				</a>
+				<a class="navbar-item">
+				  Jobs
+				</a>
+				<a class="navbar-item">
+				  Contact
+				</a>
+				<hr class="navbar-divider">
+				<a class="navbar-item">
+				  Report an issue
+				</a>
+			  </div>
+			</div>
+		  </div>
+	  
+		  <div class="navbar-end">
+			<a class="navbar-item" href="https://github.com/WillMansueto/bob-shop">
+				Source Code
+			</a>
+			<div class="navbar-item">
+			  <div class="buttons">
+				<a href="/logout" class="button is-danger is-outlined">
+				  <strong>Sign out</strong>
+				</a>
+			  </div>
+			</div>
+		  </div>
+		</div>
+	</nav>
+<section class="section">
+	<div class="columns is-centered">
+		<div class="column is-four-fifths">
+			<nav class="navbar" role="navigation" aria-label="main navigation">
+				<div class="navbar-start">
+					<a href="/products" class="navbar-item">
+						Produtos <span class="tag is-light">{{ .AllProducts }}</span>
+					</a>
+					<a href="/users" class="navbar-item">
+						Usuários <span class="tag is-light">{{ .AllUsers }}</span>
+					</a>
+				</div>
+			</nav>
+				<div class="box-section panel">
+					<div class="level panel-heading is-marginless"> 
+						<div class="level-left">
+							<p>Ultimas Alterações </p> 
+						</div>
+					</div>
+					<div class="box">
+						{{ if (ne .LastProduct.Name "")}}
+						<article class="media">
+						  <div class="media-left">
+							<figure class="image is-64x64">
+								<i class="fas fa-4x fa-box"></i>
+							</figure>
+						  </div>
+						  <div class="media-content">
+							<div class="content">
+							<p>
+								Ultimo Produto adicionado: 
+								<br>
+								<strong>{{ .LastProduct.Name }}</strong>
+								<br>
+								Preço: {{ .LastProduct.Price }} Quantidade: {{ .LastProduct.Quantity }}
+							</p>
+							</div>
+						  </div>
+						</article>
+						{{ end }}
+						{{ if (ne .LastUser.Email "")}}
+						<article class="media">
+						  <div class="media-left">
+							<figure class="image is-64x64">
+							  <i class="fas fa-4x fa-user"></i>
+							</figure>
+						  </div>
+						  <div class="media-content">
+							<div class="content">  
+							<p>
+								Ultimo usuário cadastrado:
+								<br>
+								<strong>{{ .LastUser.Email }}</strong>
+								<br>
+								Name: {{ .LastUser.FirstName }} {{ .LastUser.LastName }}
+							  </p>
+							</div>
+						  </div>
+						</article>
+						{{ end }}
+					  </div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+</section>
+
+	<script src="https://kit.fontawesome.com/a81ce89204.js" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/a81ce89204.js" crossorigin="anonymous"></script>
+</body>
+</html>

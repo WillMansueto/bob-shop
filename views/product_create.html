@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Painel de Controle</title>
+	<link rel="stylesheet" href="/assets/css/bulma.min.css">
+	<link href="https://fonts.googleapis.com/css?family=Lobster+Two&display=swap" rel="stylesheet">
+	<style>.box-section {background-color: lightgrey;}</style>
+</head>
+<body>
+	<nav class="navbar" role="navigation" aria-label="main navigation">
+		<div class="navbar-brand">
+		  <a class="navbar-item" href="/">
+			<p style="font-family: 'Lobster Two', cursive; font-size: 30px;">Bob Shop</p>
+			<i class="fas fa-frog fa-2x has-text-primary" style="padding-left: 3px; font-size: 30px;" aria-hidden="true"></i>
+		  </a>
+	  
+		  <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+			<span aria-hidden="true"></span>
+			<span aria-hidden="true"></span>
+			<span aria-hidden="true"></span>
+		  </a>
+		</div>
+	  
+		<div id="navbarBasicExample" class="navbar-menu">
+		  <div class="navbar-start">
+			<a class="navbar-item is-active" href="/admin">
+			  Dashboard
+			</a>
+			<a class="navbar-item" href="#">
+			  Minha Conta
+			</a>
+			<a class="navbar-item" href="#">
+			  Segurança
+			</a>
+
+	  
+			<div class="navbar-item has-dropdown is-hoverable">
+			  <a class="navbar-link">
+				More
+			  </a>
+	  
+			  <div class="navbar-dropdown">
+				<a class="navbar-item">
+				  About
+				</a>
+				<a class="navbar-item">
+				  Jobs
+				</a>
+				<a class="navbar-item">
+				  Contact
+				</a>
+				<hr class="navbar-divider">
+				<a class="navbar-item">
+				  Report an issue
+				</a>
+			  </div>
+			</div>
+		  </div>
+	  
+		  <div class="navbar-end">
+			<a class="navbar-item" href="https://github.com/WillMansueto/bob-shop">
+				Source Code
+			</a>
+			<div class="navbar-item">
+			  <div class="buttons">
+				<a href="/logout" class="button is-danger is-outlined">
+				  <strong>Sign out</strong>
+				</a>
+			  </div>
+			</div>
+		  </div>
+		</div>
+	</nav>
+<section class="section">
+	<div class="columns is-centered">
+		<div class="column is-four-fifths">
+			<nav class="navbar" role="navigation" aria-label="main navigation">
+				<div class="navbar-start">
+					<a href="/users" class="navbar-item">
+						Usuários
+					</a>
+				</div>
+			</nav>
+			{{ if (ne .Alert.Message "") }}
+				<div class='notification is-{{ .Alert.Type }}'> {{ .Alert.Message }} </div>
+			{{ end }}
+				<div class="box-section panel">
+					<div class="level panel-heading is-marginless"> 
+						<div class="level-left">
+							<p>Novo Produto</p> 
+						</div>
+						<div class="level-right">
+							<a href="/products" class="button is-danger"> Voltar</a>
+						</div>
+					</div>
+					<div>
+						<form action="/product-create" method="post">
+							<div class="field ">
+								<label for="name">Nome do produto</label>
+								<div class="control">
+									<input class="input" type="text" name="name" id="name" placeholder="Informe o nome do produto"/>
+								</div>
+							</div>
+							<div class="field">
+								<label for="price">Valor unitário</label>
+								<div class="control">
+									<input class="input" type="text" name="price" id="price" placeholder="Informe o valor unitário do produto"/>
+								</div>
+							</div>
+							<div class="field">
+								<label for="quantity">Quantidade</label>
+								<div class="control">
+									<input class="input" type="text" name="quantity" id="quantity" placeholder="Informe a quantidade disponível"/>
+								</div>
+							</div>
+							<div class="field">
+								<label for="category">Categoria</label>
+								<div class="select">
+									<select name="category" id="category">
+										{{ range .Categories }}
+										<option value="{{ .Id }}">{{ .Description }}</option>
+										{{ end }}
+									</select>
+								</div>
+							</div>
+							<div class="field">
+								<div class="control">
+									<button type="submit" class="button">Adicionar</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+</section>
+
+	<script src="https://kit.fontawesome.com/a81ce89204.js" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/a81ce89204.js" crossorigin="anonymous"></script>
+</body>
+</html>

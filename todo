@@ -1,6 +1,8 @@
+- [] edit templates html
 - [] implement jquery navbar burger (*.html)
 - [] implement jquery flash messages close (register.html)
-
+- [] implement template inheritance (https://siongui.github.io/2017/02/05/go-template-inheritance-jinja2-extends-include/)
+- [] change glide to go mod
 
 truncate table x;
 --reseta toda a tabela

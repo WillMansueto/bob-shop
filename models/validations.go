@@ -1,9 +1,10 @@
 package models
 
 import(
+	"fmt"
 	"errors"
-	"github.com/badoux/checkmail"
 	"strings"
+	"github.com/badoux/checkmail"
 )
 
 var(
@@ -99,4 +100,16 @@ func ValidateNewUser(user User) (User, error) {
 		return User{}, ErrRequiredPassword
 	}
 	return user, nil
+}
+
+func Count(table string) (int64, error) {
+	con := Connect()
+	defer con.Close()
+	sql := fmt.Sprintf("SELECT COUNT(*) FROM %s", table)
+	var count int64
+	err := con.QueryRow(sql).Scan(&count)
+	if err != nil {
+		return 0, err
+	}
+	return count, nil
 }
